@@ -1,0 +1,25 @@
+.review-box{
+    margin: 7px;
+    width: 250px;
+    height: 450px;
+    box-sizing: border-box;
+    background-color:aqua;
+    line-height: 29px;
+    text-align: center;
+    box-shadow: black  3px 6px;
+    border-radius: 16px;
+}
+
+
+
+.review-header{
+padding: 15px;
+text-transform: uppercase;
+
+}
+
+.review-text{
+    display: flex;
+    text-align: center;
+    padding: 20px;
+}

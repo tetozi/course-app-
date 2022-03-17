@@ -1,0 +1,35 @@
+.shpoingCart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shopingTitle{
+    text-decoration: solid;
+    text-transform: uppercase;
+}
+
+
+.buyNow{
+    border-radius: 7px;
+    margin-left: 7px;
+    padding: 12px;
+    text-transform: uppercase;
+    background-color: aqua;
+    width: 100px;
+    text-decoration: solid;
+    color: grey;
+}
+
+.back{
+    border-radius: 7px;
+    margin-left: 7px;
+    padding: 12px;
+    text-transform: uppercase;
+    background-color: rgb(52, 59, 59);
+    width: 100px;
+    text-decoration: solid;
+    color: rgb(20, 175, 223);
+}
+
+

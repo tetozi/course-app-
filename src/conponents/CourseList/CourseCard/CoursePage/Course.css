@@ -1,0 +1,143 @@
+.delete-Btn {
+    margin-left: 20px;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: red;
+    width: 40%;
+    padding: 10px 50px 20px;
+    border: 0;
+    padding: 15px;
+    border-radius: 7px;
+    color: #ffffff;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+
+  .update-Btm{
+    margin-left: 70px;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: green;
+    width: 40%;
+    padding: 10px 50px 20px;
+    border: 0;
+    padding: 15px;
+    border-radius: 7px;
+    color: #ffffff;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+
+  }
+
+
+
+.teztarea{
+  background: #dddddd;
+  color: gray;
+  padding: 1em;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  outline: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  width: 700px;
+  height: 800px;
+}
+
+.review-div{
+  display: flex;
+  text-align: center;
+}
+
+.courseHeader{
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.content{
+  height: 500px;
+  background-color: bisque;
+  display: flex;
+}
+img{
+  height: 400px;
+  width: 500px;
+  object-fit: contain;
+  padding: 7px;
+}
+
+.info {
+  display: flex;
+  margin-left: 20px;
+  letter-spacing: .2rem;
+  text-align: center;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+
+.duration{
+  text-decoration:solid;
+  color: rgb(23, 26, 26);
+  text-transform: uppercase;
+  margin: 10px;
+}
+
+.footer{
+  margin-top: 7px;
+}
+
+
+.message{
+  cursor: pointer;
+}
+.message{
+  background-color: black;
+  color: blanchedalmond;
+  border-radius: 9px;
+  height: 290px;
+  width: 290px;
+  margin-left: 25px;
+  padding: 12px;
+  line-height: 1.5;
+  font-size: 16px;
+  
+}
+
+
+.sendMessage{
+  margin-top: 12px;
+  margin-left: 60px;
+  width: 200px;
+  border-radius: 7px;
+  background-color: black;
+  color: blanchedalmond;
+  padding: 10px;
+}
+
+.sendMessage{
+  cursor: pointer;
+}
+
+.testimonials-containe{
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  
+}
+
+.view{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
