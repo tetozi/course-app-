@@ -12,10 +12,10 @@ const CourseList = () => {
         courseService.getAll()
             .then(result => {   
                 setCourse(result);
+               
                 setTimeout(() => {
                     setIsLoading(true)
-                  }, 4500);
-               
+                  }, 2500);
             })
             .catch(err => {
                 console.log(err);
