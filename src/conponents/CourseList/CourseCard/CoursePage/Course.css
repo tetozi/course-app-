@@ -147,11 +147,8 @@ img{
   
  }
  
- .myList{
-   list-style: none;
- }
  
- .my{
+ .paginationButton{
    display: block;
    width:40px;
    height:40px;
@@ -163,17 +160,12 @@ img{
    border-radius: 4px;
    box-shadow: inset 0 5px 10px rgba(0,0,0, .1), 0 2px 5px rgba(0,0,0, .5);
    margin: 5px;
+   border-radius: 12px;
  }
  
- ul li:first-child a{
-   border-radius: 18px 0 0 18px ;
- }
  
- ul li:last-child a{
-   border-radius: 0 18px 18px 0;
- }
  
- ul li a:hover{
+ div button:hover{
    background:aqua;
    color: #fff;
    text-decoration: none;

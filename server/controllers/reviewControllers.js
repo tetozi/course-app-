@@ -3,14 +3,21 @@ const catchAsync = require('../error/catchAsync');
 
 
 exports.getAllReviews = catchAsync(async (req, res, next) => {
+    const pageSize = 4
+    const page = parseInt(req.query.page || '0')
+
     let filter = {}
-    if(req.params.courseId) filter = {course: req.params.courseId}
-    const reviews = await Review.find(filter);
-   
+    if (req.params.courseId) filter = { course: req.params.courseId }
+    const total = await Review.countDocuments(filter)
+    const reviews = await Review.find(filter)
+        .limit(pageSize)
+        .skip(pageSize * page);
+
 
     res.status(200).json({
         status: 'success',
         results: reviews.length,
+        totalPages: Math.ceil(total / pageSize),
         data: {
             reviews
         }

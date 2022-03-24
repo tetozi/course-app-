@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Review from "../../../Review/Review";
 import useFetchCourse from "../../../../hooks/useFetchCourse";
 import { useAuthContext } from '../../../../contexts/AuthContext'
-import { Pagination } from "react-bootstrap";
+
 
 
 const CoursePage = () => {
@@ -16,27 +16,25 @@ const CoursePage = () => {
   const { user } = useAuthContext()
   const [course] = useFetchCourse(courseId)
   const [message, setMessage] = useState({})
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [numberOfPages, setNumberOfPages] = useState(0);
+
+  const [pageNumber, setPageNumber] = useState(0);
   const navigate = useNavigate();
 
-
+  const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
 
   useEffect(() => {
-    courseService.getreviews(courseId)
-   // setLoading(true)
-      .then(reviews => {
-          setReview(reviews)
-       
-      //  setLoading(false)
-      })
-  }, [courseId])
+    courseService.getreviews(courseId, pageNumber)
 
-    // Get current reviews
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-   // const currentReviews = reviews.slice(indexOfFirstPost, indexOfLastPost);
+      .then(({ reviews, totalPages }) => {
+        console.log(totalPages)
+        console.log(reviews)
+        setReview(reviews);
+        setNumberOfPages(totalPages);
+      });
+  }, [pageNumber, courseId])
+
 
   const deleteHandler = (e) => {
     e.preventDefault();
@@ -51,7 +49,7 @@ const CoursePage = () => {
   const takeMessage = (e) => {
     setMessage(e.target.value);
   };
-
+  
   const sendMessage = (e) => {
     e.preventDefault()
     let token = user.token
@@ -60,8 +58,8 @@ const CoursePage = () => {
         setReview(state => [...state, reviews])
       })
   }
- // Change page
- const paginate = pageNumber => setCurrentPage(pageNumber);
+  // Change page
+
   return (
     <>
       <div className="coursePage">
@@ -90,23 +88,23 @@ const CoursePage = () => {
         </div>
         <div className="testimonials-container">
           <div className="testimonials">
-          
-              {reviews.length > 0
-                ? (
-                  <>
-                   <Review reviews={reviews} />
-                    
-                  </>
-                )
-                   
-                : <p className="course-err-txt">No review in database!</p>
-              }
-            <ul className='myPagination'>
-              <li className='myList'> <a href='!#' className='my'> 1 </a></li>
-              <li className='myList'><a href='!#' className='my'> 1 </a></li>
-              <li className='myList'><a href='!#' className='my'> 1 </a></li>
-              <li className='myList'><a href='!#' className='my'> 1 </a></li>
-            </ul>
+
+            {reviews.length > 0
+              ? (
+                <>
+                  <Review reviews={reviews} />     
+                </>
+              )
+              : <p className="course-err-txt">No review in database!</p>
+            }
+            <div className='myPagination'>
+            {pages.map((pageIndex) => (
+                    <button className='paginationButton' key={pageIndex} onClick={() => setPageNumber(pageIndex)}>
+                      {pageIndex + 1}
+                    </button>
+                  ))}
+             
+            </div>
           </div>
         </div>
       </section>

@@ -85,13 +85,16 @@ export const update = async (courseId, course) => {
 };
 
 
-export const getreviews = async (courseId) => {
-    let res = await fetch(`${baseUrl}/course/${courseId}/reviews`)
+export const getreviews = async (courseId,pageNumber) => {
+    let res = await fetch(`${baseUrl}/course/${courseId}/reviews?page=${pageNumber}`)
     let jsonResult = await res.json();
-
+     
     if (res.ok) {
-        const courseData = jsonResult.data.reviews
-        return courseData
+        const reviews = jsonResult.data.reviews
+        const totalPages = jsonResult.totalPages
+        console.log(totalPages)
+        console.log(reviews);
+        return {reviews, totalPages}
     } else {
         const err = jsonResult.message;
         throw err
