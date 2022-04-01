@@ -14,6 +14,7 @@ const userSchema =  new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Course',
       },
+      photo: String,
       password: {
         type: String,
         required: [true, "Provided in password"],
