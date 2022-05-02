@@ -8,12 +8,14 @@ export const login = async (username, password) => {
         },
         body: JSON.stringify({ username, password })
     });
-    console.log(res)
-    let jsonResult = await res.json();
 
+    let jsonResult = await res.json();
+     console.log(jsonResult)
     if (res.ok) {
         const user = jsonResult.data.user
         const token = jsonResult.data.token
+        
+        console.log(user)
         const users = { ...user, token }
         return users
     } else {

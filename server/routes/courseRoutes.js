@@ -6,7 +6,7 @@ const reviewRouter =  require('../routes/reviewRoutes');
 const router = express.Router();
  
 
-// router.param('id', tourController.checkID);
+
 
  router.use('/:courseId/reviews', reviewRouter);
 
