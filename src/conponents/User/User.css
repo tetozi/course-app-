@@ -1,0 +1,55 @@
+.userPage {
+    display: flex;
+    align-content: space-around;
+}
+
+.sidebar {
+    background-color: black;
+    height: 750px;
+    width: 350px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center
+}
+
+.userName {
+    text-transform: uppercase;
+    color: teal;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.userImage {
+    text-align: center;
+    border-radius: 50%;
+}
+
+.takePHoto {
+    background-color: teal;
+    border-radius: 5px;
+    padding: 8px;
+    color: rgb(222, 235, 235);
+    text-transform: uppercase;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    background-color: teal;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: rgb(222, 235, 235);
+    margin-right: 55px;
+    text-transform: uppercase;
+}
+
+.userCourse {
+    display: inline-block;
+    margin-left: 40px;
+}

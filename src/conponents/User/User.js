@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import * as cartService from '../../services/cartService'
 import { useAuthContext } from '../../contexts/AuthContext'
 import CourseCard from '../CourseList/CourseCard/CourseCard';
-
+import './User.css'
 
 const User = () => {
     const [course, setCourse] = useState({});
     const { user } = useAuthContext();
     const [file, setFile] = useState()
-   
+    const photo = user.photo
+    console.log(photo);
 
     useEffect(() => {
         cartService.getMyCourse(user._id)
@@ -36,10 +37,10 @@ const User = () => {
 
         let response = await fetch(`http://localhost:5000/api/v1/users/updateUser`, {
             method: "PATCH",
-            headers: {         
+            headers: {
                 'Authorization': `Bearer ${token}`
             },
-            body: formData 
+            body: formData
         })
         let jsonResult = await response.json();
         console.log(jsonResult);
@@ -48,13 +49,23 @@ const User = () => {
 
     return (
         <>
-            <form onSubmit={onFormSubmit}>
-                <input type='file' name="photo" onChange={photoInputChange} />
-                <button type="submit">Upload photo</button>
-            </form>
-            <h1>{user.username}</h1>
-            <p>{user.photo}</p>
+          <div className='userPage' >
+                
+            <div className="sidebar">
+                <h1 className='userName'>{user.username}</h1>
+                <img className='userImage' src={`http://localhost:5000/static/images/users/${photo}`} alt="user" />
+                <form onSubmit={onFormSubmit}>
+                    <label for="photo" className="custom-file-upload">
+                        <input type='file' name="photo" id='photo' onChange={photoInputChange} />
+                        Custom Upload
+                    </label>
 
+                    <button className='takePHoto' type="submit">Upload photo</button>
+                </form>
+            </div>
+
+
+            <div className='userCourse'>
             {course.length > 0
                 ? (
                     <ul className="overview">
@@ -63,6 +74,10 @@ const User = () => {
                 )
                 : <p className="course-err-txt">No course in database!</p>
             }
+            </div>
+            </div>
+
+         
         </>
 
 

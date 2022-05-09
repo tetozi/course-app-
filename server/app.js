@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
+app.use('/static', express.static('public'))
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
