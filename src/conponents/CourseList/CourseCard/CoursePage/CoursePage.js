@@ -28,8 +28,6 @@ const CoursePage = () => {
     courseService.getreviews(courseId, pageNumber)
 
       .then(({ reviews, totalPages }) => {
-        console.log(totalPages)
-        console.log(reviews)
         setReview(reviews);
         setNumberOfPages(totalPages);
       });

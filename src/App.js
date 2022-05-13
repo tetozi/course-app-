@@ -15,6 +15,8 @@ import Update from './conponents/Update/Update';
 import Logout from './conponents/Logout/Logout';
 import ShopingCart from './conponents/Shoping Cart/ShopingCart';
 import User from './conponents/User/User';
+import PrivateRaoutes from './conponents/PrivateRoutes/PrivateRoutes';
+
 
 
 
@@ -22,23 +24,26 @@ function App() {
   return (
     <>
       <AuthProvider>
-        
 
 
-          <Header />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/user" element={<User/>} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/register" element={<Register />} />
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/register" element={<Register />} />
+
+          <Route element={<PrivateRaoutes />}>
             <Route path="/create" element={<Create />} />
             <Route path="/course/:courseId" element={<CoursePage />} />
+            <Route path="/user" element={<User />} />
             <Route path="/update/:courseId" element={<Update />} />
             <Route path="/cart/:courseId" element={<ShopingCart />} />
-          </Routes>
-        
+          </Route>
+        </Routes>
+
       </AuthProvider>
     </>
   );
