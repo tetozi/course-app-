@@ -25,8 +25,6 @@ function App() {
     <>
       <AuthProvider>
 
-
-
         <Header />
 
         <Routes>

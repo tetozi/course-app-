@@ -10,11 +10,11 @@ import loginValidator from "./helperLogin";
 const Login = () => {
   const { login } = useAuthContext();
   const navigate = useNavigate();
-  const [username, setUser] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const takeUsername = (e) => {
-    setUser(e.target.value);
+  const takeEmail = (e) => {
+    setEmail(e.target.value);
   };
 
   const takePassword = (e) => {
@@ -25,8 +25,8 @@ const Login = () => {
   const onLoginHandler = (e) => {
     e.preventDefault();
     
-  if (loginValidator(username,password)) {
-    authService.login(username, password)
+  if (loginValidator(email,password)) {
+    authService.login(email, password)
     .then((authData) => {
       login(authData);
       toast.success('You are succsessfuly Logged In', {
@@ -45,8 +45,8 @@ const Login = () => {
     <div className="login-page">
       <div className="form">
         <form className="login-form" onSubmit={onLoginHandler} method="POST">
-          <input type="text" placeholder="username" id="username" name="username" value={username}
-          onChange={takeUsername} />
+          <input type="text" placeholder="email" id="email" name="email" value={email}
+          onChange={takeEmail} />
           <input
             type="password"
             placeholder="password"

@@ -6,6 +6,7 @@ const initialAuthState = {
     _id: '',
     username: '',
     token: '',
+    email:'',
     photo:""
 };
 

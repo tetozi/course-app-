@@ -1,14 +1,14 @@
 const baseUrl = 'http://localhost:5000/api/v1'
 
-export const login = async (username, password) => {
+export const login = async (email, password) => {
     let res = await fetch(`${baseUrl}/users/login`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password })
     });
-
+    
     let jsonResult = await res.json();
      console.log(jsonResult)
     if (res.ok) {

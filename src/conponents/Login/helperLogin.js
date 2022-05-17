@@ -1,14 +1,14 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function loginValidator(username, password) {
+function loginValidator(email, password) {
 
-  if(username =='' || password ==''){
+  if(email =='' || password ==''){
     toast.error('All fields are required!');
     return false;
   }
 
-  if(username === '') {
+  if(email === '') {
     toast.error('You must fill the username field!');
     return false;
   }

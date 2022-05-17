@@ -10,6 +10,13 @@ const userSchema =  new mongoose.Schema({
         unique: true,
         minlength: [true, "The username should be at least 5 characters."],
       },
+      email:{
+        type:String,
+        required: [true, "Please provide your email"],
+        unique: true,
+        lowercase:true,
+        validate:[validator.isEmail, 'Please provide a valid email']
+      },
       course:{
         type: mongoose.Schema.ObjectId,
         ref: 'Course',
