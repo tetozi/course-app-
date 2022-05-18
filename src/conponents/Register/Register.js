@@ -11,6 +11,11 @@ const Register = () => {
     const [username, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState('')
+    const [email, setEmail] = useState("");
+
+    const takeEmail = (e) => {
+        setEmail(e.target.value)
+    }
 
     const takeUsername = (e) => {
         setUser(e.target.value);
@@ -26,9 +31,9 @@ const Register = () => {
 
     const onRegisterHandler = (e) => {
         e.preventDefault();
-        if (helperRegister(username, password, passwordConfirm)) {
+        if (helperRegister(username,email, password, passwordConfirm)) {
             authService
-                .register(username, password, passwordConfirm)
+                .register(username,email, password, passwordConfirm)
                 .then((authData) => {
                     login(authData);
                     toast.success('You are succsessfuly sign in', {
@@ -50,6 +55,14 @@ const Register = () => {
                 <form className="login-form" onSubmit={onRegisterHandler} method="POST">
                     <input type="text" placeholder="username" id="username" name="username" value={username} onChange={takeUsername} />
                     <input
+                        type="email"
+                        placeholder="email"
+                        id="email"
+                        name="email"
+                        value={email}
+                        onChange={takeEmail}
+                    />
+                    <input
                         type="password"
                         placeholder="password"
                         id="password"
@@ -63,7 +76,7 @@ const Register = () => {
                         id="passwordConfirm"
                         name="passwordConfirm"
                         value={passwordConfirm}
-                        onChange={ takeConfirmPassword}
+                        onChange={takeConfirmPassword}
                     />
                     <button type="submit" value="Login">
                         Register
