@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
+import { useAuthContext } from "../../contexts/AuthContext"
+
 import * as courseService from "../../services/courseService"
 import "./Create.css"
 
@@ -9,12 +11,13 @@ import "./Create.css"
 
 const Create = () => { 
     const navigate = useNavigate();
+    const { user } = useAuthContext();
 
-  
       const onCourseCreate = (e) => {
           e.preventDefault();
           let formData = new FormData(e.currentTarget);
-  
+        
+       
           let title = formData.get('title');
           let description = formData.get('description');
           let imageUrl = formData.get('imageUrl');
@@ -24,6 +27,7 @@ const Create = () => {
             description,
             imageUrl,
             duration,
+            
         } 
         console.log(course)
   
