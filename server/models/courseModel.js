@@ -31,11 +31,7 @@ const courseSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-   owner:
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    }
+   owner: String
   ,
   customers: [
     {

@@ -17,6 +17,7 @@ const Create = () => {
           e.preventDefault();
           let formData = new FormData(e.currentTarget);
         
+          let owner = user._id
           let token = user.token
           let title = formData.get('title');
           let description = formData.get('description');
@@ -27,7 +28,7 @@ const Create = () => {
             description,
             imageUrl,
             duration,
-           
+            owner
         } 
         console.log(course)
   
