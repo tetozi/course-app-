@@ -65,7 +65,7 @@ exports.addUser = catchAsync(async (req, res, next) => {
   })
 
   exports.createCourse = catchAsync( async (req, res,next) => {
-  
+    if (!req.body.user) req.body.user = req.user.id
 
     const newCourse = await Course.create(req.body);
 

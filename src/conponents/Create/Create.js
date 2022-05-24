@@ -17,7 +17,7 @@ const Create = () => {
           e.preventDefault();
           let formData = new FormData(e.currentTarget);
         
-       
+          let token = user.token
           let title = formData.get('title');
           let description = formData.get('description');
           let imageUrl = formData.get('imageUrl');
@@ -27,11 +27,11 @@ const Create = () => {
             description,
             imageUrl,
             duration,
-            
+           
         } 
         console.log(course)
   
-        courseService.create(course)
+        courseService.create(course,token)
               .then(result => {
                   navigate('/');
               })

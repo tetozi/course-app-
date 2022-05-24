@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 
 
+
 const courseSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -30,7 +31,12 @@ const courseSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-
+   owner:
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    }
+  ,
   customers: [
     {
       type: mongoose.Schema.ObjectId,
@@ -49,10 +55,7 @@ courseSchema.virtual('reviews', {
   localField: '_id'
 });
 
-courseSchema.pre('save', function (next) {
-  
-  next()
-})
+
 
 courseSchema.pre(/^find/, function (next) {
   this.populate({

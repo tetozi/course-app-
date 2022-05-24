@@ -1,11 +1,12 @@
 const baseUrl = 'http://localhost:5000/api/v1'
 
 
-export const create = async (courseData) => {
+export const create = async (courseData,token) => {
     let response = await fetch(`${baseUrl}/course`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ ...courseData })
     });

@@ -1,7 +1,7 @@
 const express = require("express");
 const courseController = require("./../controllers/courseControllers");
 const reviewRouter =  require('../routes/reviewRoutes');
-
+const authController =require('./../controllers/authController')
 
 const router = express.Router();
  
@@ -13,7 +13,7 @@ const router = express.Router();
 router
   .route("/")
   .get(courseController.getAllCourse)
-  .post( courseController.createCourse);
+  .post(authController.protect, courseController.createCourse);
 
 router
   .route("/:id")
