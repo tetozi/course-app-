@@ -2,6 +2,8 @@
 const AppError = require("./../error/appError");
 const catchAsync = require('./../error/catchAsync')
 const User = require("../models/userModel");
+const factory = require('./hnadlerFactory')
+
 const multer = require('multer');
 
 
@@ -91,3 +93,6 @@ exports.getOneUser = catchAsync(async (req, res, next) => {
     }
   });
 })
+
+
+exports.updatedUser = factory.updateOne(User)

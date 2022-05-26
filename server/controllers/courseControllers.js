@@ -2,6 +2,7 @@
 const APIFeatures = require('../utilis/apiFeauteres');
 const AppError = require('./../error/appError');
 const catchAsync = require('./../error/catchAsync')
+const factory = require('./hnadlerFactory')
 
 const Course = require('./../models/courseModel')
 
@@ -9,13 +10,13 @@ const Course = require('./../models/courseModel')
 
 
 exports.getAllCourse = catchAsync(async (req, res, next) => {
-  
+
   const features = new APIFeatures(Course.find(), req.query)
-      .filter()
-      .sort()
-      .limitFields()
-      .paginate();
-    const course = await features.query;
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate();
+  const course = await features.query;
 
   // SEND RESPONSE
   res.status(200).json({
@@ -62,52 +63,22 @@ exports.addUser = catchAsync(async (req, res, next) => {
   });
 
 
-  })
+})
 
-  exports.createCourse = catchAsync( async (req, res,next) => {
-    if (!req.body.user) req.body.user = req.user.id
-
-    const newCourse = await Course.create(req.body);
-
-    res.status(201).json({
-      status: 'success',
-      data: {
-       course: newCourse
-      }
-    });
-
-});
-
-exports.updateCourse = catchAsync(async (req, res, next) => {
-
-  const course = await Course.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true
-  });
-  if (!course) {
-    return next(new AppError("Course not found"), 404)
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      course
-    }
-  });
-
-});
-
-exports.deleteCourse = catchAsync(async (req, res, next) => {
-
-  const course = await Course.findByIdAndDelete(req.params.id);
-
-  if (!course) {
-    return next(new AppError("Course not found"), 404)
-  }
-
-  res.status(204).json({
-    status: 'success',
-    data: null
-  });
-
-});
+exports.createCourse = factory.createOne(Course)
+exports.updateCourse = factory.updateOne(Course)
+exports.deleteCourse = factory.deleteOne(Course)
+//exports.deleteCourse = catchAsync(async (req, res, next) => {
+//
+//  const course = await Course.findByIdAndDelete(req.params.id);
+//
+//  if (!course) {
+//   return next(new AppError("Course not found"), 404)
+//  }
+//
+//  res.status(204).json({
+//   status: 'success',
+//   data: null
+//  });
+//
+// );

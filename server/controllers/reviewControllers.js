@@ -1,5 +1,6 @@
 const Review = require('../models/reviewModel');
 const catchAsync = require('../error/catchAsync');
+const factory = require('./hnadlerFactory')
 
 
 exports.getAllReviews = catchAsync(async (req, res, next) => {
@@ -24,16 +25,12 @@ exports.getAllReviews = catchAsync(async (req, res, next) => {
     })
 })
 
-
-exports.createReview = catchAsync(async (req, res, next) => {
+exports.setCourseUserIds = (req, res, next) => {
+    // Allow nested routes
     if (!req.body.course) req.body.course = req.params.courseId
     if (!req.body.user) req.body.user = req.user.id
-    const newReview = await Review.create(req.body);
-
-    res.status(201).json({
-        status: 'success',
-        data: {
-            review: newReview
-        }
-    });
-});
+    next();
+  };
+  
+exports.createReview = factory.createOne(Review);
+exports.deleteReview =  factory.deleteOne(Review)
