@@ -22,7 +22,7 @@ const Header = () => {
     );
     return (
         <header className="header">
-		<h1 className="logo"><Link to="/" />Flexbox</h1>
+		<h1 className="logo"><Link to="/" />Just</h1>
       <ul className="main-nav">
       {user.username
                         ? userNavigation
