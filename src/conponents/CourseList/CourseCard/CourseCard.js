@@ -17,7 +17,7 @@ const CourseCard = ({course}) => {
           
           <span className="date">{course.duration} days</span>
           <h2>{course.title}</h2>
-          <p>{course.description}</p>
+          <p className='cardDescription'>{course.description}</p>
         </div>
       <button className="card button"><Link  to={`/course/${course._id}`}> Details </Link></button> 
         <div className="card-footer">

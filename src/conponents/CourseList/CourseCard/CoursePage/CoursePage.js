@@ -15,6 +15,7 @@ const CoursePage = () => {
   const { courseId } = useParams();
   const { user } = useAuthContext()
   const [course] = useFetchCourse(courseId)
+  const owner = course.owner
   const [message, setMessage] = useState({})
   const [numberOfPages, setNumberOfPages] = useState(0);
 
@@ -44,10 +45,24 @@ const CoursePage = () => {
       });
   };
 
+
+
+  const ownerButtons = (
+
+
+    < div className="footer" >
+      < button className="delete-Btn" onClick={deleteHandler} > Delete</button>
+      <button className="update-Btm"  ><Link to={`/update/${courseId}`}>Update</Link> </button>
+    </div >
+
+  )
+
   const takeMessage = (e) => {
     setMessage(e.target.value);
   };
-  
+
+
+
   const sendMessage = (e) => {
     e.preventDefault()
     let token = user.token
@@ -72,36 +87,35 @@ const CoursePage = () => {
             <button className="update-Btm"  ><Link to={`/cart/${courseId}`}> buy it now </Link> </button>
           </div>
         </div>
-        <div className="footer">
-          <button className="delete-Btn" onClick={deleteHandler} > Delete</button>
-          <button className="update-Btm"  ><Link to={`/update/${courseId}`}>Update</Link> </button>
-        </div>
-      </div>
-      <section >
-        <div className="view">
 
+      </div>
+      {user._id && (user._id == owner
+        ? ownerButtons
+        : <div className="view">
           <h2 className="heading-secondary">Once you try it, you can't go back</h2>
           <textarea className="message" id="textarea" cols="30" rows="10" onChange={takeMessage}></textarea>
           <button className="sendMessage" onClick={sendMessage}>Send me </button>
         </div>
+      )}
+      <section >
         <div className="testimonials-container">
           <div className="testimonials">
 
             {reviews.length > 0
               ? (
                 <>
-                  <Review reviews={reviews} />     
+                  <Review reviews={reviews} />
                 </>
               )
               : <p className="course-err-txt">No review in database!</p>
             }
             <div className='myPagination'>
-            {pages.map((pageIndex) => (
-                    <button className='paginationButton' key={pageIndex} onClick={() => setPageNumber(pageIndex)}>
-                      {pageIndex + 1}
-                    </button>
-                  ))}
-             
+              {pages.map((pageIndex) => (
+                <button className='paginationButton' key={pageIndex} onClick={() => setPageNumber(pageIndex)}>
+                  {pageIndex + 1}
+                </button>
+              ))}
+
             </div>
           </div>
         </div>
