@@ -64,8 +64,8 @@ const CoursePage = () => {
     e.preventDefault()
     let token = user.token
     courseService.sendMessage(courseId, message, token)
-      .then(() => {
-        setCourse(state => [...state, reviews])
+      .then(reviews => {
+        setCourse(state => ({...state, reviews}))
       })
   }
   // Change page
