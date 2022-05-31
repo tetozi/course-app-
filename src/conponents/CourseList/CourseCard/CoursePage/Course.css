@@ -136,7 +136,7 @@ img{
 
 .myPagination{
   position: absolute;
-  top: 224%;
+  top: 189%;
   left: 50%;
   transform: translate(-50%,-50%);
   display: flex;

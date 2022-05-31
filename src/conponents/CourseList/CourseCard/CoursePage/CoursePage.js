@@ -14,7 +14,7 @@ const CoursePage = () => {
   const [reviews, setReview] = useState({})
   const { courseId } = useParams();
   const { user } = useAuthContext()
-  const [course] = useFetchCourse(courseId)
+  const [course,setCourse] = useFetchCourse(courseId)
   const owner = course.owner
   const [message, setMessage] = useState({})
   const [numberOfPages, setNumberOfPages] = useState(0);
@@ -34,7 +34,7 @@ const CoursePage = () => {
       });
   }, [pageNumber, courseId])
 
-
+ //delete handler
   const deleteHandler = (e) => {
     e.preventDefault();
 
@@ -48,13 +48,10 @@ const CoursePage = () => {
 
 
   const ownerButtons = (
-
-
     < div className="footer" >
       < button className="delete-Btn" onClick={deleteHandler} > Delete</button>
       <button className="update-Btm"  ><Link to={`/update/${courseId}`}>Update</Link> </button>
     </div >
-
   )
 
   const takeMessage = (e) => {
@@ -68,7 +65,7 @@ const CoursePage = () => {
     let token = user.token
     courseService.sendMessage(courseId, message, token)
       .then(() => {
-        setReview(state => [...state, reviews])
+        setCourse(state => [...state, reviews])
       })
   }
   // Change page

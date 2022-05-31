@@ -30,7 +30,7 @@ exports.getAllCourse = catchAsync(async (req, res, next) => {
 
 exports.getCourse = catchAsync(async (req, res) => {
 
-  const course = await Course.findById(req.params.id).populate('reviews')
+  const course = await Course.findById(req.params.id)
 
 
   if (!course) {
